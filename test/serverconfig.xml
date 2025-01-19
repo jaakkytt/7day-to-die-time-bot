@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ServerSettings>
+    <property name="ServerName" value="Test server"/>
+    <property name="BloodMoonFrequency" value="1" />
+    <property name="BloodMoonRange" value="0" />
+</ServerSettings>

@@ -16,7 +16,7 @@ Example statuses:
 Currently, there are some assumptions on the game server configurations:
 - `TelnetEnabled` is set to `true`
 - `TelnetPort` and `TelnetPassword` values have been specified
-- `BloodMoonFrequency` has a default value of `7`
+- `BloodMoonRange` has a default value of `0`
 
 ## Installation
 
@@ -35,6 +35,10 @@ If your game server is running on the https://github.com/Didstopia/7dtd-server c
 you can simply run the bot in a Docker container next to your game instance. Adjust the variables and volume mappings
 accordingly. Or set up a container created from the `jaakkytt/7days-to-die-time-bot:latest` image,
 and additionally specify the `TELNET_HOST` and `TELNET_PORT` variables. 
+
+In case your `serverconfig.xml` property `BloodMoonFrequency` is not 7, you can either map a folder containing the
+config file to `/usr/src/app/data` for the bot container (as in the example below), or pass the frequency as the
+`SERVER_CONFIG_BLOOD_MOON_FREQUENCY` env variable to the container.
 
 ```
 services:
@@ -59,6 +63,8 @@ services:
     container_name: time-bot
     image: jaakkytt/7days-to-die-time-bot:latest
     restart: unless-stopped
+    volumes:
+    - ./data:/usr/src/app/data
     depends_on:
       - game
     environment:
